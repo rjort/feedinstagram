@@ -1,30 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Header from './src/components/Header';
+import Stories from './src/components/Stories';
 import Feed from './src/pages/Feed';
-import { createStackNavigator } from '@react-navigation/stack';
-import {NavigationContainer} from '@react-navigation/native'
+import Menu from './src/components/Menu';
+import Login from './src/pages/Login';
 
-const Stack = createStackNavigator()
-
-export default function App() {
-  return (
-    <View style={style.container}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Feed">
-          <Stack.Screen name="Feed" component={Feed} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </View>
+const App = () => {
+  return(
+    <React.Fragment>
+      <Header />
+      <Stories />
+      <Feed />
+      <Menu />
+    </React.Fragment>
   );
-}
-
-const style = StyleSheet.create(
-  {
-    container: {
-      flex: 1,
-      backgroundColor: '#fff' 
-    }
-  }
-)
+};
 
 
+export default App;

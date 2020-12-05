@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, FlatList,Button , View, ScrollView, TextInput} from 'react-native';
+import { StyleSheet, FlatList,Button , View, ScrollView, TextInput}  from 'react-native';
 import axios from 'axios'
 import LazyImage from '../../components/LazyImage';
 import { AsyncStorage } from 'react-native';
 
 
-import { Container, Post, Header, Avatar, Name, Description, Loading } from './styles';
+import { Container, Post, Header, Avatar, Name, Description, Loading, ActionButton, SubContainer } from './styles';
+
+import Icon from 'react-native-vector-icons/FontAwesome5';
+
 
 export default function Feed() {
   const [error, setError] = useState('');
@@ -17,6 +20,7 @@ export default function Feed() {
   const [refreshing, setRefreshing] = useState(false);
   const [text, setText] = useState('')
   const [comentarios, setComentarios] = useState([])
+ 
 
   const MAX_LENGTH = 250;
 
@@ -77,8 +81,7 @@ export default function Feed() {
     }
   }
 
-    
-
+  
   useEffect(() => {
     loadPage()
   }, []);
@@ -100,18 +103,40 @@ export default function Feed() {
               source={{ uri: item.image }}
             />
 
+            <SubContainer>
+              <ActionButton>
+              <Icon name="heart" size={22} />
+              </ActionButton>
+
+              <ActionButton>
+              <Icon name="comment" size={22} />
+              </ActionButton>
+
+              <ActionButton>
+              <Icon name="paper-plane" size={22} />
+              </ActionButton>
+
+            </SubContainer>
+            
+            <ActionButton>
+              <Icon name="bookmark" size={22} />
+              </ActionButton>
+            
             <Description>
               <Name>{item.author.name}</Name> {item.description}
             </Description>
+            
             <Description>
-              {comentarios}
+               {comentarios}
+              <ActionButton>
+                <Icon name="heart" size={15}/>
+              </ActionButton>
             </Description>
            
-
             <TextInput
               multiline={true}
               onChangeText={(text) => setText(text)}
-              placeholder={"Comentários"}
+              placeholder={"Adicione um comentário..."}
               style={[styles.text]}
               maxLength={MAX_LENGTH}
               value={text}/>
@@ -150,7 +175,7 @@ export default function Feed() {
       />
     </Container>
   );
-}
+};
 
 const styles = StyleSheet.create(
   {text: {
@@ -162,4 +187,6 @@ const styles = StyleSheet.create(
     minHeight: 170,
     borderTopWidth: 1,
     borderColor: "rgba(212,211,211, 0.3)"
-}})
+    
+}});
+
