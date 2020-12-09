@@ -30,7 +30,7 @@ export default function Login() {
           </SubContainer>
     
           <ContainerInferior>
-            <Text >Não tem uma conta?</Text>
+            <Text >Não tem uma conta?</Text> 
             <Cadastrar><Text style={{color: '#1E90FF'}}>Cadastre-se</Text></Cadastrar>
           </ContainerInferior>
   

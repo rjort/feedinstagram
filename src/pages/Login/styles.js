@@ -27,7 +27,6 @@ export const SubContainer = styled.View`
 export const DadosInput = styled.TextInput`
   borderColor: #DCDCDC;
   borderWidth: 1px;
-  borderRadius: 3px;
   backgroundColor: #FFF;
   width: 350px;
   marginBottom: 20px;

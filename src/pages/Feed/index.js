@@ -1,13 +1,33 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, FlatList,Button , View, ScrollView, TextInput}  from 'react-native';
+import { StyleSheet, FlatList}  from 'react-native';
 import axios from 'axios'
 import LazyImage from '../../components/LazyImage';
 import { AsyncStorage } from 'react-native';
 
+import { 
+  Container, 
+  Post, 
+  Header, 
+  Avatar, 
+  Name, 
+  ContainerActions,
+  ContainerActionsIcons,
+  GroupIcons,
+  Loading, 
+  ActionButton, 
+  AddComent, 
+  Label, 
+  BtnVerComentario,
+  ViewComentario,
+  
+  
+ } from './styles';
 
-import { Container, Post, Header, Avatar, Name, Description, Loading, ActionButton, SubContainer } from './styles';
-
+ 
+//expo add react-native-vector-icons
+//react-native link react-native-vector-icons
 import Icon from 'react-native-vector-icons/FontAwesome5';
+
 
 
 export default function Feed() {
@@ -91,61 +111,67 @@ export default function Feed() {
   const renderItem = ({item}) => {
     return (
       <Post>
-            <Header>
-              <Avatar source={{ uri: item.author.avatar }} />
-              <Name>{item.author.name}</Name>
-            </Header>
+        <Header>
+          <Avatar source={{ uri: item.author.avatar }} />
+          <Name>{item.author.name}</Name>
+        </Header>
 
-            <LazyImage
+        <LazyImage
               aspectRatio={item.aspectRatio} 
               shouldLoad={viewable.includes(item.id)} 
               smallSource={{ uri: item.small }}
               source={{ uri: item.image }}
-            />
+        />
 
-            <SubContainer>
-              <ActionButton>
-              <Icon name="heart" size={22} />
-              </ActionButton>
-
-              <ActionButton>
-              <Icon name="comment" size={22} />
-              </ActionButton>
+      
+        <ContainerActions>
+          <ContainerActionsIcons>
+            <GroupIcons>
 
               <ActionButton>
-              <Icon name="paper-plane" size={22} />
+                <Icon name="heart" size={22} />
               </ActionButton>
 
-            </SubContainer>
-            
-            <ActionButton>
-              <Icon name="bookmark" size={22} />
-              </ActionButton>
-            
-            <Description>
-              <Name>{item.author.name}</Name> {item.description}
-            </Description>
-            
-            <Description>
-               {comentarios}
               <ActionButton>
-                <Icon name="heart" size={15}/>
+                <Icon name="comment" size={22} />
               </ActionButton>
-            </Description>
-           
-            <TextInput
-              multiline={true}
-              onChangeText={(text) => setText(text)}
-              placeholder={"Adicione um comentário..."}
-              style={[styles.text]}
-              maxLength={MAX_LENGTH}
-              value={text}/>
 
-            <Button
-              title="Salvar"
-              onPress={() => onSave(String(item.id))}
-              accessibilityLabel="Salvar">
-            </Button>
+              <ActionButton>
+                <Icon name="paper-plane" size={22} />
+              </ActionButton>
+
+            </GroupIcons>
+
+              <ActionButton>
+                <Icon  name="bookmark" size={22} />
+              </ActionButton>
+
+          </ContainerActionsIcons>
+              <Label>320 Likes</Label>
+
+              <Label><Name>{item.author.name}</Name> {item.description}</Label>
+
+              <BtnVerComentario><Label style={{color: '#B5B5B5'}}>Ver todos os comentarios</Label></BtnVerComentario> 
+
+              <Label>{comentarios} </Label>
+
+        </ContainerActions>
+
+        <ViewComentario>
+                <AddComent 
+                  multiline={true}
+                  onChangeText={(text) => setText(text)}
+                  placeholder={"Adicione um comentário..."}
+                  style={[styles.text]}
+                  maxLength={MAX_LENGTH}
+                  value={text} />
+
+                <ActionButton 
+                  onPress={() => onSave(String(item.id))}>
+                  <Icon style={{paddingHorizontal: 10}} name="paper-plane" size={22} 
+                  accessibilityLabel="Salvar"/>
+                </ActionButton>
+        </ViewComentario>
 
       </Post>
     )
@@ -179,14 +205,11 @@ export default function Feed() {
 
 const styles = StyleSheet.create(
   {text: {
-    fontSize: 30,
-    lineHeight: 33,
+    fontSize: 15,
+    lineHeight: 15,
     color: "#333333",
     padding: 16,
-    paddingTop: 16,
-    minHeight: 170,
     borderTopWidth: 1,
     borderColor: "rgba(212,211,211, 0.3)"
     
 }});
-

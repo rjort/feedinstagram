@@ -19,6 +19,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import avatar from '../../assets/foto.jpg';
 
+
 const Stories = () =>{
     return(
         <Container>
