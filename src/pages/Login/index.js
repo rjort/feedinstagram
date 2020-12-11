@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text} from 'react-native';
 
+
+
 import {Container, 
         Logo, 
         SubContainer, 
@@ -12,6 +14,9 @@ import {Container,
 
 import logo from './assets/instagram.png';
 
+
+
+
 export default function Login() {
 
     return (
@@ -22,6 +27,7 @@ export default function Login() {
               <DadosInput placeholder="Email"/>
 
               <DadosInput placeholder="Senha"/>  
+              
               
               <BtnAcesso><Text>Acessar</Text></BtnAcesso>
             

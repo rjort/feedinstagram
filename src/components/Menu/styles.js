@@ -5,6 +5,7 @@ export const Container = styled.View`
     height: 100px;
     justify-content: center;
     height: 50px;
+    
 `;
 
 export const SubContainer = styled.View`
@@ -13,6 +14,7 @@ export const SubContainer = styled.View`
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
+    
     
 `; 
 

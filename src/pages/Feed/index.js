@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, FlatList}  from 'react-native';
+import { StyleSheet, FlatList, Image}  from 'react-native';
 import axios from 'axios'
 import LazyImage from '../../components/LazyImage';
+import Header from '../../components/Header';
+import Stories from '../../components/Stories';
 import { AsyncStorage } from 'react-native';
+
 
 import { 
   Container, 
   Post, 
-  Header, 
+  HeaderProfile, 
+  ItensHeader,
   Avatar, 
   Name, 
   ContainerActions,
@@ -19,14 +23,16 @@ import {
   Label, 
   BtnVerComentario,
   ViewComentario,
-  
-  
  } from './styles';
 
  
 //expo add react-native-vector-icons
 //react-native link react-native-vector-icons
+
 import Icon from 'react-native-vector-icons/FontAwesome5';
+
+
+
 
 
 
@@ -40,10 +46,11 @@ export default function Feed() {
   const [refreshing, setRefreshing] = useState(false);
   const [text, setText] = useState('')
   const [comentarios, setComentarios] = useState([])
- 
 
   const MAX_LENGTH = 250;
 
+
+  
   async function loadPage(pageNumber = page, shouldRefresh = false) {
     if (pageNumber === total) return;
     if (loading) return;
@@ -106,15 +113,43 @@ export default function Feed() {
     loadPage()
   }, []);
 
- 
+  const [iconConfigure] = useState({
+    color: '#9C9C9C',
+    size: 20,
+    position: 'absolute'
+});
+  
+  const [iconGroup] = useState({
+  color: '#363636',
+  size: 20,
+  position: 'absolute'
+  
+});
+
+const [liked, setLiked] = useState(false);
 
   const renderItem = ({item}) => {
+
+    
+   
+  
+    
     return (
+      
+     
       <Post>
-        <Header>
+        <HeaderProfile>
+          <ItensHeader>
           <Avatar source={{ uri: item.author.avatar }} />
-          <Name>{item.author.name}</Name>
-        </Header>
+          <Name>{item.author.name} </Name>
+          
+          </ItensHeader>
+          <ActionButton><Icon  name="ellipsis-h" {...iconConfigure} /></ActionButton>
+         
+        </HeaderProfile>
+        
+       
+        
 
         <LazyImage
               aspectRatio={item.aspectRatio} 
@@ -123,27 +158,34 @@ export default function Feed() {
               source={{ uri: item.image }}
         />
 
-      
         <ContainerActions>
           <ContainerActionsIcons>
             <GroupIcons>
-
+            <ActionButton
+                onPress={()=> {
+                setLiked(!liked)
+                }}>
+                  <Image source={liked
+                  ?require("./assets/heart.png")
+                  :require("./assets/heart-outline.png")
+              }
+                  style={{height: 20, width: 20}}
+                  resizeMode="cover"
+              />
+              </ActionButton>
+                 
               <ActionButton>
-                <Icon name="heart" size={22} />
+                <Icon name="comment" {...iconGroup} />
               </ActionButton>
 
               <ActionButton>
-                <Icon name="comment" size={22} />
-              </ActionButton>
-
-              <ActionButton>
-                <Icon name="paper-plane" size={22} />
+                <Icon name="paper-plane" {...iconGroup} />
               </ActionButton>
 
             </GroupIcons>
 
               <ActionButton>
-                <Icon  name="bookmark" size={22} />
+                <Icon  name="bookmark" {...iconGroup} />
               </ActionButton>
 
           </ContainerActionsIcons>
@@ -152,23 +194,26 @@ export default function Feed() {
               <Label><Name>{item.author.name}</Name> {item.description}</Label>
 
               <BtnVerComentario><Label style={{color: '#B5B5B5'}}>Ver todos os comentarios</Label></BtnVerComentario> 
-
+              
               <Label>{comentarios} </Label>
+              
 
         </ContainerActions>
 
         <ViewComentario>
+        
                 <AddComent 
                   multiline={true}
                   onChangeText={(text) => setText(text)}
                   placeholder={"Adicione um comentário..."}
                   style={[styles.text]}
                   maxLength={MAX_LENGTH}
+                  showsVerticalScrollIndicator={false}
                   value={text} />
 
                 <ActionButton 
                   onPress={() => onSave(String(item.id))}>
-                  <Icon style={{paddingHorizontal: 10}} name="paper-plane" size={22} 
+                  <Icon style={{paddingHorizontal: 10}} name="paper-plane" {...iconGroup}
                   accessibilityLabel="Salvar"/>
                 </ActionButton>
         </ViewComentario>
@@ -181,8 +226,12 @@ export default function Feed() {
     setViewable(changed.map(({ item }) => item.id));
   }, []);
 
+
   return (
+    
     <Container>
+      <Header />
+      <Stories />
       <FlatList
         key="list"
         data={feed}
@@ -199,7 +248,9 @@ export default function Feed() {
         onEndReachedThreshold={0.1}
         onEndReached={() => loadPage()}
       />
+      
     </Container>
+    
   );
 };
 
@@ -211,5 +262,6 @@ const styles = StyleSheet.create(
     padding: 16,
     borderTopWidth: 1,
     borderColor: "rgba(212,211,211, 0.3)"
-    
-}});
+}
+});
+

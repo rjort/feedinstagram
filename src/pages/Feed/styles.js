@@ -2,18 +2,25 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  padding-bottom: 20px;
+  
 `;
 
 export const Post = styled.View`
   margin-top: 10px;
 `;
 
-export const Header = styled.View`
+export const HeaderProfile = styled.View`
   padding: 10px;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 `;
+
+export const ItensHeader = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+`;
+
 
 export const Avatar = styled.Image`
   width: 32px;
@@ -43,6 +50,7 @@ export const ActionButton = styled.TouchableOpacity`
 `;
 export const ContainerActions = styled.View`
   padding: 10px 5px;
+  
   
 `;
 
@@ -87,5 +95,4 @@ export const BtnVerComentario = styled.TouchableOpacity`
   justify-content: flex-start;
   align-items: center;
   padding: 5px;
-
 `;

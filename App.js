@@ -5,16 +5,13 @@ import Feed from './src/pages/Feed';
 import Menu from './src/components/Menu';
 import Login from './src/pages/Login';
 
+
 const App = () => {
   return(
     <React.Fragment>
-      <Header />
-      <Stories />
-      <Feed />
-      <Menu />
+     <Feed  />       
     </React.Fragment>
   );
 };
-
 
 export default App;
