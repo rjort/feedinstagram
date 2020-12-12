@@ -31,11 +31,6 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-
-
-
-
-
 export default function Feed() {
   const [error, setError] = useState('');
   const [feed, setFeed] = useState([]);
@@ -49,8 +44,6 @@ export default function Feed() {
 
   const MAX_LENGTH = 250;
 
-
-  
   async function loadPage(pageNumber = page, shouldRefresh = false) {
     if (pageNumber === total) return;
     if (loading) return;
@@ -108,7 +101,6 @@ export default function Feed() {
     }
   }
 
-  
   useEffect(() => {
     loadPage()
   }, []);
@@ -126,16 +118,11 @@ export default function Feed() {
   
 });
 
-const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(false);
 
   const renderItem = ({item}) => {
 
-    
-   
-  
-    
     return (
-      
      
       <Post>
         <HeaderProfile>
@@ -147,9 +134,6 @@ const [liked, setLiked] = useState(false);
           <ActionButton><Icon  name="ellipsis-h" {...iconConfigure} /></ActionButton>
          
         </HeaderProfile>
-        
-       
-        
 
         <LazyImage
               aspectRatio={item.aspectRatio} 
@@ -157,7 +141,6 @@ const [liked, setLiked] = useState(false);
               smallSource={{ uri: item.small }}
               source={{ uri: item.image }}
         />
-
         <ContainerActions>
           <ContainerActionsIcons>
             <GroupIcons>
@@ -166,8 +149,8 @@ const [liked, setLiked] = useState(false);
                 setLiked(!liked)
                 }}>
                   <Image source={liked
-                  ?require("./assets/heart.png")
-                  :require("./assets/heart-outline.png")
+                  ?require("../../assets/Feed/heart.png")
+                  :require("../../assets/Feed/heart-outline.png")
               }
                   style={{height: 20, width: 20}}
                   resizeMode="cover"
@@ -196,7 +179,6 @@ const [liked, setLiked] = useState(false);
               <BtnVerComentario><Label style={{color: '#B5B5B5'}}>Ver todos os comentarios</Label></BtnVerComentario> 
               
               <Label>{comentarios} </Label>
-              
 
         </ContainerActions>
 
@@ -221,11 +203,10 @@ const [liked, setLiked] = useState(false);
       </Post>
     )
   }
-  
+
   const handleViewableChanged = useCallback(({ changed }) => {
     setViewable(changed.map(({ item }) => item.id));
   }, []);
-
 
   return (
     
@@ -248,9 +229,7 @@ const [liked, setLiked] = useState(false);
         onEndReachedThreshold={0.1}
         onEndReached={() => loadPage()}
       />
-      
     </Container>
-    
   );
 };
 
@@ -261,6 +240,7 @@ const styles = StyleSheet.create(
     color: "#333333",
     padding: 16,
     borderTopWidth: 1,
+    
     borderColor: "rgba(212,211,211, 0.3)"
 }
 });

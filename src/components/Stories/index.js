@@ -18,7 +18,12 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import avatar from '../../assets/foto.jpg';
+import story from '../../assets/Story/avril_lavigne.jpg';
+import story1 from '../../assets/Story/avril_lavigne.jpg';
+import story2 from '../../assets/Story/avril_lavigne.jpg';
+import story3 from '../../assets/Story/avril_lavigne.jpg';
+import story4 from '../../assets/Story/avril_lavigne.jpg';
+import story5 from '../../assets/Story/avril_lavigne.jpg';
 
 
 const Stories = () =>{
@@ -36,56 +41,56 @@ const Stories = () =>{
                
                 <ContainerItemStory>
                     <ContainerPhoto>
-                        <Photo source={avatar}/>
+                        <Photo source={story1}/>
                     </ContainerPhoto>
-                    <Name>Avatar</Name>
+                    <Name>Avril</Name>
                 </ContainerItemStory>
                 
                 <ContainerItemStory>
                     <ContainerPhoto>
-                        <Photo source={avatar}/>
+                        <Photo source={story2}/>
                     </ContainerPhoto>
                     <Name>Avatar</Name>
                 </ContainerItemStory>
             
                 <ContainerItemStory>
                     <ContainerPhoto>
-                        <Photo source={avatar}/>
+                        <Photo source={story3}/>
                     </ContainerPhoto>
                     <Name>Avatar</Name>
                 </ContainerItemStory>
 
                 <ContainerItemStory>
                     <ContainerPhoto>
-                        <Photo source={avatar}/>
+                        <Photo source={story4}/>
                     </ContainerPhoto>
                     <Name>Avatar</Name>
                 </ContainerItemStory>
  
                 <ContainerItemStory>
                     <ContainerPhoto>
-                        <Photo source={avatar}/>
+                        <Photo source={story5}/>
                     </ContainerPhoto>
                     <Name>Avatar</Name>
                 </ContainerItemStory>
 
                 <ContainerItemStory>
                     <ContainerPhoto>
-                        <Photo source={avatar}/>
+                        <Photo source={story}/>
                     </ContainerPhoto>
                     <Name>Avatar</Name>
                 </ContainerItemStory>
 
                 <ContainerItemStory>
                     <ContainerPhoto>
-                        <Photo source={avatar}/>
+                        <Photo source={story}/>
                     </ContainerPhoto>
                     <Name>Avatar</Name>
                 </ContainerItemStory>
  
                 <ContainerItemStory>
                     <ContainerPhoto>
-                        <Photo source={avatar}/>
+                        <Photo source={story}/>
                     </ContainerPhoto>
                     <Name>Avatar</Name>
                 </ContainerItemStory>

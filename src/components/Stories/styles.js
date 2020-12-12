@@ -36,7 +36,7 @@ export const ContainerItemStory  = styled.View`
     width: 80px;
     height: 80px;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     margin-top: 10px;
     
 
@@ -64,5 +64,6 @@ export const Name  = styled.Text`
     height: 20px;
     font-size: 12px;
     padding: 5px;
+    
     
 `;

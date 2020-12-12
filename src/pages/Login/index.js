@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text} from 'react-native';
 
-
-
 import {Container, 
         Logo, 
         SubContainer, 
@@ -12,10 +10,7 @@ import {Container,
         Cadastrar, 
         ContainerInferior} from './styles';
 
-import logo from './assets/instagram.png';
-
-
-
+import logo from '../../assets/instagram.png';
 
 export default function Login() {
 
@@ -24,9 +19,16 @@ export default function Login() {
           <Logo source={logo} />
           <SubContainer>
         
-              <DadosInput placeholder="Email"/>
+              <DadosInput 
+              placeholder="Email"
+              textContentType="emailAddress"
+              keyboardType="email-address" 
+              autoCompleteType="email"
+              />
 
-              <DadosInput placeholder="Senha"/>  
+              <DadosInput 
+              placeholder="Senha"
+              secureTextEntry= {true}/>  
               
               
               <BtnAcesso><Text>Acessar</Text></BtnAcesso>
