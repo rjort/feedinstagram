@@ -34,10 +34,6 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import avatar from '../../assets/foto.jpg';
 
-import Story1 from '../../assets/foto.jpg';
-import Story2 from '../../assets/foto.jpg';
-import Story3 from '../../assets/foto.jpg';
-import Story4 from '../../assets/foto.jpg';
 
 
 const Profile = () =>{

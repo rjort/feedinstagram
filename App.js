@@ -10,7 +10,7 @@ import Profile from './src/pages/Profile';
 const App = () => {
   return(
     <React.Fragment>
-     <Login  />   
+     <Profile  />   
      <Menu />    
     </React.Fragment>
   );
