@@ -16,20 +16,19 @@ import Loading from '../../components/Loading'
 
 
 const CREATERESETPASS_USER = gql`
-    mutation ResetPass($email: String!) {
+    mutation CreatePasswordReset($email: String!) {
         createPasswordReset(email: $email)
     }
 `
 const validationSchema = Yup.object().shape({
     email: Yup
     .string()
-    .required('O e-mail é necessário')
     .email('O e-mail é inválido')
     .label('Email')
 })
 
 export default function ResetPassword() {
-    const [resetPass, { loading }] = useMutation(CREATERESETPASS_USER)
+    const [createPasswordReset, { loading }] = useMutation(CREATERESETPASS_USER)
     const { handleSubmit, register, setValue, errors } = useForm({
         resolver: yupResolver(validationSchema)
     })
@@ -39,8 +38,11 @@ export default function ResetPassword() {
     }, [register])
 
     function onSubmit({email}) {
-        resetPass({
-            variables: { email: email }
+        console.log(email)
+        createPasswordReset({
+            variables: {
+                email: email
+            }
         }).then(response => {
             if (response.errors) {
                 Alert.alert('Error', response.errors[0].message)
@@ -52,16 +54,17 @@ export default function ResetPassword() {
     }
     return (
         <KeyboardAvoidingView style={styles.main}>
+
             { loading && <Loading /> }
 
             <TextField
             placeholder="Email"
             autoCorrect={false}
             error={errors?.email}
-            onChangeTet={value => setValue('email', value)}
+            onChangeText={value => setValue('email', value)}
             />
             <TouchableOpacity style={styles.btnSubmit} onPress={handleSubmit(onSubmit)}>
-                <Text style={styles.submitText}>Resetar Senha</Text>
+                <Text style={styles.submitText}>Recuperar Senha</Text>
             </TouchableOpacity>
         </KeyboardAvoidingView>
     )
