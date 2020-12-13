@@ -4,7 +4,8 @@ import {
     Alert,
     StyleSheet,
     TouchableOpacity,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    View
  } from 'react-native'
 import { gql, useMutation } from '@apollo/client'
 import { useForm } from 'react-hook-form'
@@ -27,8 +28,8 @@ const SIGNUP_USER = gql`
 const validationSchema = Yup.object().shape({
     name: Yup
     .string()
-    .label("Nome")
-    .required("O nome é necessário"),
+    .required("O nome é necessário")
+    .label("Nome"),
     email: Yup
     .string()
     .required("O e-mail é necessário")
@@ -36,15 +37,9 @@ const validationSchema = Yup.object().shape({
     .label("Email"),
     password: Yup
     .string()
+    .required("A senha é necessário")
     .min(6, "A senha é muito pequena")
-    .max(15, "A senha é muito grande")
-    .required("A senha é necessário"),
-    confirm_password: Yup
-    .string()
-    .required("Necessário repetir a senha")
-    .test('password-match', "Senhas não batem", (value) => {
-        return this.parent.password === value
-    })
+    .max(15, "A senha é muito grande"),
 })
 
 export default function SignUp() {
@@ -61,6 +56,7 @@ export default function SignUp() {
     }, [register])
 
     function onSubmit({name, email, password}) {
+        console.log(name)
         signupUser({
             variables: {
                 name: name,
@@ -78,8 +74,10 @@ export default function SignUp() {
     }
 
     return (
-        <KeyboardAvoidingView style={styles.main }>
-            { loading && <Loading />}
+        <KeyboardAvoidingView style={ styles.main }>
+
+            { loading && <Loading /> }
+
             <TextField
             placeholder="Nome"
             autoCorrect={false}
@@ -100,14 +98,6 @@ export default function SignUp() {
             autoCorrect={false}
             error={errors?.password}
             onChangeText={value => setValue('password', value)}
-            />
-
-            <TextField
-            secureTextEntry
-            placeholder="Confirmar Senha"
-            autoCorrect={false}
-            error={errors?.confirm_password}
-            onChangeText={value => setValue('confirm_password', value)}
             />
 
             <TouchableOpacity style={styles.btnSubmit} onPress={handleSubmit(onSubmit)}>
