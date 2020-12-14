@@ -7,6 +7,8 @@ import Feed from '../pages/Feed'
 import Search from '../pages/Search'
 import NewPost from '../pages/NewPost'
 import Profile from '../pages/Profile'
+import Likes from '../pages/Likes'
+import Comments from '../pages/Comments'
 import Logo from '../components/Logo'
 
 const AppStack = createStackNavigator()
@@ -61,6 +63,8 @@ const AppRoutes = () => (
             headerTitleAlign: 'center'
         }} 
         />
+        <AppStack.Screen name="Likes" component={Likes} options={{ title: 'Curtidas' }} />
+        <AppStack.Screen name="Comments" component={Comments} options={{ title: 'Comentários' }} />
     </AppStack.Navigator>
 )
 

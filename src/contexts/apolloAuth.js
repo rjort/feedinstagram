@@ -33,6 +33,8 @@ export const ApolloAuthProvider = ({ children }) => {
     })
 
     useEffect(() => {
+        const abortController = new AbortController()
+
         async function loadStorageData() {
             const storageUser = await AsyncStorage.getItem('@RNAuth:user')
             const storageToken = await AsyncStorage.getItem('@RNAuth:token')
@@ -47,6 +49,10 @@ export const ApolloAuthProvider = ({ children }) => {
         }
 
         loadStorageData()
+
+        return function cleanup() {
+            abortController.abort()
+        }
     }, [])
 
     async function login(user = {}, token = null) {

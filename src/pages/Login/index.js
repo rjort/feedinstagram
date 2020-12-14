@@ -81,7 +81,7 @@ export default function Login({ navigation }) {
             })
         ]).start()
 
-        return function cleanUp() {
+        return function cleanup() {
             abortController.abort()
         }
     }, [register, offset, opacity])
